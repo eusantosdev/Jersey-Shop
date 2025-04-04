@@ -11,7 +11,7 @@ function App() {
             price: 119.99,
             active: false,
             quantity: 1, 
-            isInBag: false
+            isInBag: true
         },
         {
             id: 2, 
@@ -89,29 +89,32 @@ function App() {
     return ( 
         <>
             <section className="items">
-                <h4>Jersey Shop Made with React JS</h4>
+                <h4>Jersey Shop</h4>
                 
-                { items.map((item, id) => 
-                    <div key={id} className="item">
+                { items.map(( { photo, name, price, quantity, isInBag }, id ) => 
+                    <div key={id} className={`product ${ isInBag && 'selected' }`}>
                         <div className="product">
                             <div className="photo">
-                                <img src={"./img/" + item.photo} />
+                                <img src={"./img/" + photo} />
                             </div>
                             <div className="description">
-                                <span className="name">{item.name}</span>
-                                <span className="price">{item.price}</span>
-                                <div className="quantity-area">
-                                    <button>-</button>
-                                    <span className="quantity">{item.quantity}</span>
-                                    <button>+</button>
-                                </div> 
+                                <span className="name">{name}</span>
+                                <span className="price">{price}</span>
+                                { 
+                                    isInBag &&
+                                    <div className="quantity-area">
+                                        <button>-</button>
+                                            <span className="quantity">{quantity}</span>
+                                        <button>+</button>
+                                    </div> 
+                                }
+
                             </div>
                         </div>
                     </div>
                 ) };
             </section>
             
-
             <section className="summary">
                 <strong>Order Details</strong>
                 <table>

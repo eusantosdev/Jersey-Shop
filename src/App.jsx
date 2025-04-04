@@ -91,7 +91,25 @@ function App() {
             <section className="items">
                 <h4>Jersey Shop Made with React JS</h4>
                 
-                <div className="product selected">
+                { items.map((item, id) => 
+                    <div key={id} className="item">
+                        <div className="product">
+                            <div className="photo">
+                                <img src={"./img/" + item.photo} />
+                            </div>
+                            <div className="description">
+                                <span className="name">{item.name}</span>
+                                <span className="price">{item.price}</span>
+                                <div className="quantity-area">
+                                    <button>-</button>
+                                    <span className="quantity">{item.quantity}</span>
+                                    <button>+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )};
+                { /* <div className="product selected">
                     <div className="photo">
                         <img src="././img/real_madrid.webp" />
                     </div>
@@ -217,7 +235,7 @@ function App() {
                             <button>+</button>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </section>
             
 

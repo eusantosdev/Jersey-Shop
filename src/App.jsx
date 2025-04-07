@@ -1,5 +1,6 @@
 import './App.css';
-import { Product } from './components/Product';
+import Items from './components/Items';
+import OrderDetails from './components/OrderDetails';
 
 function App() {
 
@@ -87,38 +88,21 @@ function App() {
         }
     ];
 
+    const itemsInBag = items.filter(item => item.isInBag);
+    console.log(itemsInBag);
+
     return ( 
         <>
             <section className="items">
                 <h4>Jersey Shop</h4>
-                <Product
-                items={items}
-                />
+
+                { items.map(item => 
+                    <Items items={item} key={item.id} />
+                ) }
+
             </section>
             
-            <section className="summary">
-                <strong>Order Details</strong>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1x Real Madrid</td>
-                            <td>$ 119.99</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>Total</th>
-                            <th>$ 119.99</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-            
+            { itemsInBag.length > 0 && <OrderDetails/> }
         </>
     );
 }

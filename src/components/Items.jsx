@@ -1,19 +1,18 @@
-export const Product = ({ items }) => {
+const Items = ({ items }) => {
     return (
-        items.map(( { photo, name, price, quantity, isInBag }, id ) => 
-            <div key={id} className={`product ${ isInBag ? 'selected' : '' }`}>
+            <div className={`product ${ items.isInBag ? 'selected' : '' }`}>
                 <div className="product">
                     <div className="photo">
-                        <img src={"./img/" + photo} />
+                        <img src={"./img/" + items.photo} />
                     </div>
                     <div className="description">
-                        <span className="name">{name}</span>
-                        <span className="price">{price}</span>
+                        <span className="name">{items.name}</span>
+                        <span className="price">{items.price}</span>
                         { 
-                            isInBag &&
+                            items.isInBag &&
                             <div className="quantity-area">
                                 <button>-</button>
-                                    <span className="quantity">{quantity}</span>
+                                    <span className="quantity">{items.quantity}</span>
                                 <button>+</button>
                             </div> 
                         }
@@ -21,5 +20,6 @@ export const Product = ({ items }) => {
                 </div>
             </div>
         )
-    )
 } 
+
+export default Items;

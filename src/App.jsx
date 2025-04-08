@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import './App.css';
 import Items from './components/Items';
 import OrderDetails from './components/OrderDetails';
 
 function App() {
 
-    const items = [
+    const [items, setItems] = useState(
+    [
         {
             
             id: 1, 
@@ -13,7 +15,7 @@ function App() {
             price: 119.99,
             active: false,
             quantity: 1, 
-            isInBag: true
+            isInBag: false
         },
         {
             id: 2, 
@@ -86,10 +88,15 @@ function App() {
             quantity: 1, 
             isInBag: false
         }
-    ];
+    ])
 
     const itemsInBag = items.filter(item => item.isInBag);
-    console.log(itemsInBag);
+
+    const selectHandler = (id) => {
+        let item = items.filter(item => item.id === id)[0];
+        item.isInBag = !item.isInBag;
+        setItems(items.map(el => el.id === id ? item : el));
+    }
 
     return ( 
         <>
@@ -97,7 +104,11 @@ function App() {
                 <h4>Jersey Shop</h4>
 
                 { items.map(item => 
-                    <Items items={item} key={item.id} />
+                    <Items 
+                        selectProduct={(id) => selectHandler(id)}
+                        items={item} 
+                        key={item.id} 
+                    />
                 ) }
 
             </section>
@@ -107,4 +118,6 @@ function App() {
     );
 }
 
-export default App
+
+
+export default App;

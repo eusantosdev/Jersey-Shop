@@ -1,4 +1,4 @@
-const OrderDetails = (itemsInBag) => {
+const OrderDetails = () => {
     return(
         <>
             <summary className="summary">
@@ -24,7 +24,7 @@ const OrderDetails = (itemsInBag) => {
                 </table>
             </summary>
         </>
-    )
+    );
 }
 
 export default OrderDetails;
